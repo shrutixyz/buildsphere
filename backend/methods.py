@@ -53,5 +53,5 @@ def gemini_api_response(req):
     GOOGLE_API_KEY="GOOGLE_API_KEY"
     genai.configure(api_key=GOOGLE_API_KEY)
     model = genai.GenerativeModel('gemini-pro')
-    response = model.generate_content(f"Please create a configuration for an AEC project with the following parameters: Volume of structure: {req["volume"]}. Location of structure: {req["place"]} cubic metres. Please guide upon the architectural requirements and the materials that should be choosen for the same, along with cost estimates.")
+    response = model.generate_content(f"Please create a configuration for an AEC project with the following parameters: Volume of structure: {req['volume']}. Location of structure: {req['place']} cubic metres. Please guide upon the architectural requirements and the materials that should be choosen for the same, along with cost estimates.")
     return response.text
