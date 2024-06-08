@@ -31,6 +31,7 @@ def extract_mesh_info(obj):
     return meshes
 
 
+# Function to extract data of the structure
 HOST= 'https://speckle.xyz/'
 def get_data(data):
     client = SpeckleClient(host=HOST)
@@ -49,6 +50,7 @@ def get_data(data):
     return meshes[0].volume
 
 
+# Function to get aec plan for the structure
 def gemini_api_response(req):
     GOOGLE_API_KEY="GOOGLE_API_KEY"
     genai.configure(api_key=GOOGLE_API_KEY)
