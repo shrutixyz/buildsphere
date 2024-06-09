@@ -19,31 +19,37 @@ const FormDetails = () => {
         event.preventDefault();
 
         
-        // console.log(formData);
+        console.log(formData);
 
         // get volume
-        navigate('/dashboard', {state: {
-            'volume': "223",
-            'location': formData.location,
-            'stream_id': formData.streamId
-            // 'response': response.data
-        }})
-        // axios.post(url+"getstreamparams", {
-        //     stream_id: formData.streamId,
-        //     commit_id: formData.commitId
-        // })
-        // .then((response) => {
-        //     axios.post(url + "generateplan", {
-        //         location: formData.location,
-        //         volume: response.data.parameters.volume
-        //     }).then((response) => {
-        //         navigate('/dashboard', {state: {
-        //             'volume': "223",
-        //             'location': formData.location,
-        //             'response': response.data
-        //         }})
-        //     })
-        // })
+        // navigate('/dashboard', {state: {
+        //     'volume': "223",
+        //     'location': formData.location,
+        //     'stream_id': formData.streamId
+        //     // 'response': response.data
+        // }})
+
+        let formdataParams = new FormData();
+        //add three variable to form
+        formdataParams.append("stream_id", formData.streamId);
+        formdataParams.append("commit_id", formData.commitId);
+
+        console.log(formdataParams);
+        axios({method: "post", url: url+"getstreamparams", data: formdataParams})
+        .then((response) => {
+            let formDataPlan = new FormData();
+            formDataPlan.append("place", formData.location);
+            formDataPlan.append("volume", response.data.parameters.volume);
+
+            axios.post(url + "generateplan", formDataPlan).then((response) => {
+                navigate('/dashboard', {state: {
+                    'volume': "223",
+                    'location': formData.location,
+                    'response': response.data,
+                    'stream_id': formData.streamId
+                }})
+            })
+        })
     }
     return (
         <form onSubmit={handleSubmit}>
