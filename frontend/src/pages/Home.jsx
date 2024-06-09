@@ -22,7 +22,9 @@ const Home = () =>{
                 <img src={two} className='cols' alt="" />
                 <img src={three} className='cols' alt="" />
             </div>
+            <br /><br /><br /><br /><br /><br />
             <button className='tryout' onClick={()=>navigate('/form')}>Try It Out</button>
+            <br /><br /><br /><br /><br /><br />
             </div>
             <div className='footer'>
                     <div className='footer1'>

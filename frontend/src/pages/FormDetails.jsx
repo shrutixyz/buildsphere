@@ -27,6 +27,7 @@ const FormDetails = () => {
 
     function handleSubmit(event)
     {
+        setLoading(true)
         event.preventDefault();
 
         
@@ -75,10 +76,10 @@ const FormDetails = () => {
                     
                     </div>
                     <TextField id="location" className='textfield' label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
-                    
+                    {/* <button type='submit' className='submitbutton'>Submit</button>  */}
                     {
                         loading?<img src={loader} className='loader' alt="" />:
-                        <button type='submit' onClick={()=>setLoading(true)} className='submitbutton'>Submit</button>
+                        <button type='submit' className='submitbutton'>Submit</button>
                     }
                     
                     
