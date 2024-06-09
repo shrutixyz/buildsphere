@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import '../style/FormDetails.css'
+import loader from '../assets/images/Subtract.svg'
 import Button from '@mui/material/Button';
 
 const FormDetails = () => {
@@ -12,7 +13,7 @@ const FormDetails = () => {
     const [formData, setFormData] = useState({streamId: "",commitId: "",location: ""});
     const url = "http://127.0.0.1:5000/";
     let navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false)
 
     const darkTheme = createTheme({
         palette: {
@@ -74,7 +75,12 @@ const FormDetails = () => {
                     
                     </div>
                     <TextField id="location" className='textfield' label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
-                    <button type='submit' className='submitbutton'>Submit</button>
+                    
+                    {
+                        loading?<img src={loader} className='loader' alt="" />:
+                        <button type='submit' onClick={()=>setLoading(true)} className='submitbutton'>Submit</button>
+                    }
+                    
                     
                 </form>
                 </div>
