@@ -35,7 +35,8 @@ def extract_mesh_info(obj):
 HOST= 'https://speckle.xyz/'
 def get_data(data):
     client = SpeckleClient(host=HOST)
-    account = get_default_account()
+    client.authenticate_with_token(data['token'])
+    # account = get_default_account()
     #Get the specified commit data
     commit = client.commit.get(data["stream_id"], data["commit_id"])
     referenced_object_id = commit.referencedObject

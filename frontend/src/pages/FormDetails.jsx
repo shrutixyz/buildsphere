@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +11,24 @@ import Button from '@mui/material/Button';
 const FormDetails = () => {
 
     const [formData, setFormData] = useState({streamId: "",commitId: "",location: ""});
-    const url = "http://127.0.0.1:5000/";
+ 
+    // const url = "http://127.0.0.1:5000/";
+    const url = "https://buildsphere.up.railway.app/";
+
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false)
-
+    const [token, setToken] = useState("")
+    const VUE_APP_SPECKLE_NAME="Speckle Demo App"
+    const TOKEN = `${VUE_APP_SPECKLE_NAME}.AuthToken`
     const darkTheme = createTheme({
         palette: {
             mode: 'dark',
         },
     })
+
+    useEffect(()=> {
+        setToken(localStorage.getItem(TOKEN));
+    }, [])
     function handleChange(event) {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -45,8 +54,7 @@ const FormDetails = () => {
         //add three variable to form
         formdataParams.append("stream_id", formData.streamId);
         formdataParams.append("commit_id", formData.commitId);
-
-        console.log(formdataParams);
+        formdataParams.append("token", token);
         axios({method: "post", url: url+"getstreamparams", data: formdataParams})
         .then((response) => {
             let formDataPlan = new FormData();

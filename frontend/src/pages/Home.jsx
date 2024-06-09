@@ -4,6 +4,7 @@ import two from '../assets/images/two.svg'
 import three from '../assets/images/three.svg'
 import subtitle from '../assets/images/subtitle.svg'
 import { useNavigate } from 'react-router-dom'
+import Login from './Login'
 
 const Home = () =>{
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ const Home = () =>{
             <div className='homebody'>
             <h1 class="gradient-text">Get Insights on your Structures</h1>
             <div className="moving-border">
+            
             <iframe title="Speckle" src="https://app.speckle.systems/projects/12502513cf/models/d786d1fe09#embed=%7B%22isEnabled%22%3Atrue%2C%22isTransparent%22%3Atrue%2C%22hideControls%22%3Atrue%2C%22hideSelectionInfo%22%3Atrue%2C%22noScroll%22%3Atrue%7D" width="100%" height="100%" frameborder="0"></iframe>
             </div>
             <h6>credits to the original creator of this model</h6>
@@ -23,7 +25,8 @@ const Home = () =>{
                 <img src={three} className='cols' alt="" />
             </div>
             <br /><br /><br /><br /><br /><br />
-            <button className='tryout' onClick={()=>navigate('/form')}>Try It Out</button>
+            <Login></Login>
+            {/* <button className='tryout' onClick={()=>navigate('/form')}>Try It Out</button> */}
             <br /><br /><br /><br /><br /><br />
             </div>
             <div className='footer'>
