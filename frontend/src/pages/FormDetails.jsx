@@ -50,7 +50,7 @@ const FormDetails = () => {
             let formDataPlan = new FormData();
             formDataPlan.append("place", formData.location);
             formDataPlan.append("volume", response.data.parameters.volume);
-
+ 
             axios.post(url + "generateplan", formDataPlan).then((response) => {
                 navigate('/dashboard', {state: {
                     'volume': "223",
@@ -64,15 +64,20 @@ const FormDetails = () => {
     return (
         <>
             <ThemeProvider theme={darkTheme}>
-                <h1 className='title'>BuildSphere App</h1>
+                <div className='formbody'>
+                <h1 className='gradient-text'>BuildSphere App</h1>
+                <br /><br />
                 <form onSubmit={handleSubmit}>
-                    <TextField id="stream" label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
-                    <TextField id="commit" label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
-                    <TextField id="location" label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
-                    <Button variant="contained" type='submit'>
-                        Submit
-                    </Button>
+                    <div className='commit-and-stream'>
+                    <TextField id="stream" className='textfield' label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
+                    <TextField id="commit" className='textfield' label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
+                    
+                    </div>
+                    <TextField id="location" className='textfield' label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
+                    <button type='submit' className='submitbutton'>Submit</button>
+                    
                 </form>
+                </div>
             </ThemeProvider>
         </>
     )
