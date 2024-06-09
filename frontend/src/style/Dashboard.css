@@ -1,0 +1,16 @@
+.markdown {
+    background-color: #232325;
+    height: 90vh;
+    overflow-y: scroll;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    width: 66%;
+    margin: 0.5rem;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.25rem;
+}

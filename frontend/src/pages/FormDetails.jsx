@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import '../style/FormDetails.css'
+import Button from '@mui/material/Button';
 
 const FormDetails = () => {
 
@@ -9,6 +13,12 @@ const FormDetails = () => {
     const url = "http://127.0.0.1:5000/";
     let navigate = useNavigate();
 
+
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    })
     function handleChange(event) {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
@@ -52,12 +62,19 @@ const FormDetails = () => {
         })
     }
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField id="stream" label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
-            <TextField id="commit" label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
-            <TextField id="location" label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
-            <button type='submit'>Submit</button>
-        </form>
+        <>
+            <ThemeProvider theme={darkTheme}>
+                <h1 className='title'>BuildSphere App</h1>
+                <form onSubmit={handleSubmit}>
+                    <TextField id="stream" label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
+                    <TextField id="commit" label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
+                    <TextField id="location" label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
+                    <Button variant="contained" type='submit'>
+                        Submit
+                    </Button>
+                </form>
+            </ThemeProvider>
+        </>
     )
 }
 
