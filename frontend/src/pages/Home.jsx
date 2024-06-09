@@ -14,6 +14,7 @@ const Home = () =>{
             <div className="moving-border">
             <iframe title="Speckle" src="https://app.speckle.systems/projects/12502513cf/models/d786d1fe09#embed=%7B%22isEnabled%22%3Atrue%2C%22isTransparent%22%3Atrue%2C%22hideControls%22%3Atrue%2C%22hideSelectionInfo%22%3Atrue%2C%22noScroll%22%3Atrue%7D" width="100%" height="100%" frameborder="0"></iframe>
             </div>
+            <h6>credits to the original creator of this model</h6>
             <img src={subtitle} className='subtitle' alt="" />
 
             <div className='cols-parent'>

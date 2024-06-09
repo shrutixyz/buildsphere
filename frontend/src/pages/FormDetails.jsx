@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import '../style/FormDetails.css'
+import loader from '../assets/images/Subtract.svg'
 import Button from '@mui/material/Button';
 
 const FormDetails = () => {
@@ -12,7 +13,7 @@ const FormDetails = () => {
     const [formData, setFormData] = useState({streamId: "",commitId: "",location: ""});
     const url = "http://127.0.0.1:5000/";
     let navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false)
 
     const darkTheme = createTheme({
         palette: {
@@ -50,7 +51,7 @@ const FormDetails = () => {
             let formDataPlan = new FormData();
             formDataPlan.append("place", formData.location);
             formDataPlan.append("volume", response.data.parameters.volume);
-
+ 
             axios.post(url + "generateplan", formDataPlan).then((response) => {
                 navigate('/dashboard', {state: {
                     'volume': "223",
@@ -64,15 +65,25 @@ const FormDetails = () => {
     return (
         <>
             <ThemeProvider theme={darkTheme}>
-                <h1 className='title'>BuildSphere App</h1>
+                <div className='formbody'>
+                <h1 className='gradient-text'>BuildSphere App</h1>
+                <br /><br />
                 <form onSubmit={handleSubmit}>
-                    <TextField id="stream" label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
-                    <TextField id="commit" label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
-                    <TextField id="location" label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
-                    <Button variant="contained" type='submit'>
-                        Submit
-                    </Button>
+                    <div className='commit-and-stream'>
+                    <TextField id="stream" className='textfield' label="Enter Stream Id" variant="standard" name="streamId" value={formData.streamId} onChange={handleChange}/><br />
+                    <TextField id="commit" className='textfield' label="Enter Commit Id" variant="standard" name="commitId" value={formData.commitId} onChange={handleChange}/><br />
+                    
+                    </div>
+                    <TextField id="location" className='textfield' label="Enter Location" variant="standard" name="location" value={formData.location} onChange={handleChange}/><br />
+                    
+                    {
+                        loading?<img src={loader} className='loader' alt="" />:
+                        <button type='submit' onClick={()=>setLoading(true)} className='submitbutton'>Submit</button>
+                    }
+                    
+                    
                 </form>
+                </div>
             </ThemeProvider>
         </>
     )
